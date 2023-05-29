@@ -1,0 +1,27 @@
+TABLEAU ADULT DATASET
+
+
+1. 1D Visualization: Drag and drop Age(bin) onto cols and Capital Gain onto rows.Drag and drop Capital Gain on Color.
+
+2. 2D: Drag-drop Education onto color. Then drag capital gain onto Angle and Shape. This will show a pie chart.
+
+3. 3D: Drag income onto the color, shape and size.
+
+4. Mutli: Drag and drop education on cols and marital-status on rows.
+Then drag income onto the color.
+
+
+TABLEAU IRIS DATASET
+1. 1D: Drag Petal Length on rows and species on color.
+
+2. 2D: Drag Petal Length on cols and Petal Width on rows. Drag id on detail species on colors.
+
+
+2. 3D: Drag Species and Measure Names on cols. Drag Measure Values on rows. Drag measure names on colors.
+
+or
+
+Drage Petal length and petal width on cols. Drag petal width on rows.
+Drage sepal length on color and species on size.
+
+3. Multi: Drag Petal width cm and Petal length cm on cols. Drag petal Length cm on rows. Drag Sepal Length on size and species on shape.
