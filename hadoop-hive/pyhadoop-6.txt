@@ -1,0 +1,116 @@
+1. mkdir pyhadoop (eg = pyhadoop)
+
+2. cd pyhadoop
+
+3. touch word_count_data.txt
+
+4. nano word_count_data.txt
+	
+	write anything but occurence of same word should be more so that at the output you can have word count of that word.
+-----------------------------------------------------------------------------------------
+	cat 
+	dog
+	horse
+	pig
+	monkey
+	dog
+	cat
+	dog
+	horse 
+--------------------------------------------------------------------------------------------	
+5. cat word_count_data.txt
+
+6. touch mapper.py
+
+7. nano mapper.py
+
+paste this code (for mapper.py) :
+------------------------------------------------------------------------------------------------	
+#!/usr/bin/env python
+
+# import sys because we need to read and write data to STDIN and STDOUT
+import sys
+
+# reading entire line from STDIN (standard input)
+for line in sys.stdin:
+	# to remove leading and trailing whitespace
+	line = line.strip()
+	# split the line into words
+	words = line.split()
+	
+	# we are looping over the words array and printing the word
+	# with the count of 1 to the STDOUT
+	for word in words:
+		# write the results to STDOUT (standard output);
+		# what we output here will be the input for the
+		# Reduce step, i.e. the input for reducer.py
+		print ('%s\t%s' % (word, 1))
+-------------------------------------------------------------------------------------------------------
+8. cat mapper.py
+
+9. cat word_count_data.txt | python3 mapper.py
+
+10. touch reducer.py
+
+11. nano reducer.py
+
+	Paste this = 
+-------------------------------------------------------------------------------------------------------
+#!/usr/bin/env python
+
+from operator import itemgetter
+import sys
+
+current_word = None
+current_count = 0
+word = None
+
+# read the entire line from STDIN
+for line in sys.stdin:
+	# remove leading and trailing whitespace
+	line = line.strip()
+	# splitting the data on the basis of tab we have provided in mapper.py
+	word, count = line.split('\t', 1)
+	# convert count (currently a string) to int
+	try:
+		count = int(count)
+	except ValueError:
+		# count was not a number, so silently
+		# ignore/discard this line
+		continue
+
+	# this IF-switch only works because Hadoop sorts map output
+	# by key (here: word) before it is passed to the reducer
+	if current_word == word:
+		current_count += count
+	else:
+		if current_word:
+			# write result to STDOUT
+			print ('%s\t%s' % (current_word, current_count))
+		current_count = count
+		current_word = word
+
+# do not forget to output the last word if needed!
+if current_word == word:
+	print ('%s\t%s' % (current_word, current_count))
+--------------------------------------------------------------------------------------------------------
+11. cat reducer.py
+
+12. cat word_count_data.txt | python3 mapper.py | sort -k1,1 | python3 reducer.py
+
+13. start-all.sh
+
+14. jps
+
+15. hdfs dfs -mkdir /word_count_in_python1
+
+16. hdfs dfs -copyFromLocal /home/lilavati/pyhadoop/word_count_data.txt /word_count_in_python1
+
+17. hdfs dfs -ls /
+   
+18. hdfs dfs -ls /word_count_in_python1
+
+19. chmod 777 mapper.py reducer.py 
+
+20. hadoop jar /home/lilavati/pyhadoop/hadoop-streaming-3.3.4.jar -input /word_count_in_python1/word_count_data.txt -output /word_count_in_python1/output3 -mapper "python3 /home/lilavati/pyhadoop/mapper.py" -reducer " python3 /home/lilavati/pyhadoop/reducer.py"
+  478  hdfs dfs -cat /word_count_in_python1/output3/part-00000

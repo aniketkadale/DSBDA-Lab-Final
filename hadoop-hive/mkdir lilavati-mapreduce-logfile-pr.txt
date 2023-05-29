@@ -1,0 +1,15 @@
+mkdir lilavati-mapreduce-logfile-practise
+copy log_file.txt salescountrydriver.java salescountryreducer.java salesmap (download the files first)
+cd lilavati-mapreduce-logfile-practise
+mkdir programs2
+mv log_file.txt programs2/
+javac -cp `hadoop classpath` -d programs2 SalesCountryDriver.java SalesCountryReducer.java SalesMapper.java 
+cd programs2/
+ls
+jar -cvf SalesCountry.jar -c programs2/ .
+hdfs dfs -mkdir input_div2
+hadoop fs -put log_file.txt input_div2
+hadoop fs -ls input_div2
+hadoop jar SalesCountry.jar SalesCountry.SalesCountryDriver input_div2 output_div_2
+hadoop fs -cat output_div_2/part-00000
+history

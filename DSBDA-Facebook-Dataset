@@ -1,0 +1,75 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv(r"/home/aniket/Downloads/dataset_Facebook.csv", sep = ";")
+-----------------------------------------------------------------------------------------------------------------
+df
+-----------------------------------------------------------------------------------------------------------------
+#Describe the datafram
+df.describe()
+-----------------------------------------------------------------------------------------------------------------
+#Return total no of rows & cols
+df.shape
+-----------------------------------------------------------------------------------------------------------------
+# Operation 1 - Creating data-subsets
+#subset 1
+subset1 = df[['Page total likes', 'Category', 'Post Month', 'Post Weekday']].loc[0:15]
+subset1
+-----------------------------------------------------------------------------------------------------------------
+#subset 2
+subset2 = df[['Page total likes', 'Category', 'Post Month', 'Post Weekday']].loc[16:30]
+subset2
+-----------------------------------------------------------------------------------------------------------------
+#subset3
+subset3 = df[['Page total likes', 'Category', 'Post Month', 'Post Weekday']].loc[31:50]
+subset3
+-----------------------------------------------------------------------------------------------------------------
+#Operation 2 - Merge data
+mergedData = pd.concat([subset1, subset2, subset3])
+mergedData
+-----------------------------------------------------------------------------------------------------------------
+# Operation 3 - Sort data
+sortedData = mergedData.sort_values('Post Weekday', ascending = True)
+sortedData
+-----------------------------------------------------------------------------------------------------------------
+# Operation 4 - Transpose data  (rows -> cols, cols -> rows)
+df.transpose()
+-----------------------------------------------------------------------------------------------------------------
+# Operation 5 - Shape & Reshape data
+# Shaping
+shaping = df.shape
+shaping
+-----------------------------------------------------------------------------------------------------------------
+# Reshaping
+pivot_table = pd.pivot_table(df, index = ['Type', 'Category'], values = 'like')
+print(pivot_table)
+-----------------------------------------------------------------------------------------------------------------
+# Extra - Reshaping using array
+reshaping = np.array([1, 2, 3, 4, 5, 6])
+reshaping.reshape(3, 2)
+-----------------------------------------------------------------------------------------------------------------
+
+
+*****************EXPLAINATION*******************
+1. Pandas is popular open-source python library that is used for data manipulation. It provies data structures and data analysis tools to work with structured data.
+
+2. Numpy is python library with support for large, multi-dimensional array and matrices along with collection of mathematical functions. It is widely used for scientific computing, data analysis, and machine learning tasks.
+
+3. df.describe() function provided by the Pandas library to generative descriptive statistics of a dataframe. It summarizes the central tendency, dispersion, and shape of the data.
+
+
+4. df.shape: This .shape attribute is used to determine the dimensions or shape of an array or dataframe. It returns a tuple. The first element of the tuple represents the no of rows and the second tuple represents the no of columns.
+
+5. pd.concat(): It is also provided by the Pandas library for concatenating muliple dataframes.
+
+6. sort_values() : Provided by the Pandas library. It used to sort the values of the dataframe in ascending or descending order. Set ascending = False if you want to sort in descending order. By default, it sorts in ascending.
+
+7. transpose(): The function is provided by Pandas library. Transposing means swapping the rows and cols. i.e converting rows into columns and columns into rows.
+
+8. Shaping & Reshaping: It means manipulating the structure of a dataframe to rearrange or transform its layout.
+
+9. Reshaping - pivot_table = pd.pivot_table(df, index = ['Type', 'Category'], values = 'like'):
+   In our case, it'll set the index as 'Type' and 'Cateogry' and value as 'values'. It will tell how many likes are there for a particular type and category.
+
+
+
+

@@ -1,0 +1,65 @@
+// Visualization 1- Relationship bet petal width and petal length
+
+1. Open the dataset excel file in tablue. Open in sheet1.
+
+2. Not take Petal Width cm in columns and Sepal length cm in rows. Specify color according to species.
+
+3. Drag id on to details. This will give you a relationship between the petal length and petal width.
+
+
+// Visualization 2 - Comparison of all species
+
+1. Now we want to distribute all the species based on their petal length, petal widht, sepal length and sepal width.
+
+2. First drag species on columns and all the 4 attribute(petal length, petal widht, sepal length and sepal width) on rows.
+
+3. Drag species on color mark.
+
+
+// Visualization 3 - Scatter plot using petal length and petal width/Cluster Visualization
+ 
+1. Drag petal width on cols and petal length on rows. Drag id onto the detail section.
+
+2. Go to the Analytics tab. Drag and drop Cluster on your dashboard. Keep "No of clusters" as automatic. It will create 3 clusters for 3 species.
+
+3. If you want to see the details about the clusters, click on clusters tab and click on describe clusters. It will show how information like what inputs you've give, how many clusters you have created, no of points, etc.
+
+
+// Visualization 4 - Species Count
+
+1. Drag and drop species onto cols and Iris(count) onto the rows. Drag species on color. It will show the count of the species.
+
+
+
+// Visualization 5 - Comparison of species based on Sepal width & Sepal length
+
+1. Drag and drop sepal length on cols and sepal width on rows. Drag id on detail and species on color.
+
+2. This will tell you the comparison of 3 species based on their sepal width and sepal length. i.e Iris setosa has smaller sepal length but higher sepal width. The iris-versicolor lies in the middle for length and width. And iris-virginica has higher sepal length and smaller sepal width.
+
+
+// // Visualization 6 - Comparison of species based on petal width & petal length
+
+1. Drag and drop petal length on cols and petal width on rows. Drag id on detail and species on color.
+
+2. This will tell you the comparison of 3 species based on their petal width and petal length. i.e Iris setosa has average petal length and width. The iris-versicolor has highest petal length and highest petal width.
+
+
+// Visualization 7 - Comparison of all species /  Cluster Visualization
+
+1. Drag and drop petal length and petal width on cols. Drag sepal length and sepal width on rows.
+
+2. Drag id on detail section.
+
+3. Create clusters for the species by dragging the cluster tab from "Analytics". Keep no of clusters automatic.
+
+
+// Visualization 8 - Histogram of Petal Len & Sepal Len
+
+1. Drag and drop petal length on cols and sepal length on rows. Undo it.
+
+2. Click on histogram from "show me" section on RHS. You will get the histogram of Petal Length.
+
+// Visualization 9 - Histogram of Petal width and Sepal Width
+
+1. Follow the same process as above.
