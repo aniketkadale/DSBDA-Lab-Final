@@ -1,0 +1,87 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+dataset1 = pd.read_csv("Datasets/heart.csv")
+dataset2 = pd.read_csv("Datasets/AirQuality.csv", sep=";")
+
+
+dataset1.head()
+
+dataset2.head()
+
+
+sns.pairplot(dataset2)
+plt.show()
+
+
+corr = dataset1.corr() # Compute the correlation matrix
+
+fig, ax = plt.subplots(figsize=(10, 10)) # Set up the matplotlib figure
+
+cmap = sns.diverging_palette(220, 10, as_cmap=True) # Define a custom colormap
+
+sns.heatmap(corr, cmap=cmap, center=0, annot=True, fmt=".2f", square=True, linewidths=.5) 
+
+# Draw the heatmap with the mask and aspect ratio
+plt.yticks(rotation=0) # Set the y-axis label to be horizontal
+plt.title("Correlation Heatmap of Heart Disease Dataset") # Set the title of the plot
+plt.show() # Show the plot
+
+
+sns.boxplot(x='target', y='age', data=dataset1)
+plt.title('Boxplot of Age by Heart Disease Diagnosis')
+plt.xlabel('Heart Disease Diagnosis')
+plt.ylabel('Age')
+plt.show()
+
+
+sns.scatterplot(x='chol', y='trestbps', data=dataset1)
+plt.title('Scatterplot of Cholesterol and Max Heart Rate')
+plt.xlabel('Cholesterol')
+plt.ylabel('Max Heart Rate')
+plt.show()
+
+
+plt.hist(dataset1['age'], bins=10)
+plt.title('Histogram of Column age')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+
+sns.countplot(x='cp', data=dataset1)
+plt.title('Bar Chart of Column Name')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+
+
+plt.hist(dataset2['CO(GT)'].dropna(), bins=10)
+plt.xlabel('CO Concentration')
+plt.ylabel('Count')
+plt.title('Histogram of CO Concentration')
+plt.xticks([0, 20, 40, 60, 80, 100], ['0', '20', '40', '60', '80', '100'])
+plt.show()
+
+
+sns.boxplot(y=dataset2['PT08.S1(CO)'].dropna().astype(float))
+plt.ylabel('CO Concentration')
+plt.title('Box Plot of CO Concentration')
+plt.show()
+
+
+
+sns.scatterplot(x='NO2(GT)', y='CO(GT)', data=dataset2.dropna(subset=['NO2(GT)', 'CO(GT)']))
+plt.xlabel('CO Concentration')
+plt.ylabel('NO2 Concentration')
+plt.title('Scatter Plot of NO2 and CO Concentrations')
+plt.yticks([0, 20, 40, 60, 80, 100], ['0', '20', '40', '60', '80', '100'])
+plt.show()
+
+
+
+sns.violinplot(y='NMHC(GT)', data=dataset2.dropna(subset=['NMHC(GT)']))
+plt.ylabel('NMHC Concentration')
+plt.title('Violin Plot of NMHC Concentration')
+plt.show()
